@@ -222,3 +222,4 @@ ranking.vite
 
 # End of https://www.toptal.com/developers/gitignore/api/vim,emacs,visualstudiocode,node
 static/
+public/
