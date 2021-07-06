@@ -1,0 +1,13 @@
+{% extends "index.html" %}
+{% import "post_macros.html" as post_macros %}
+
+{% block content %}
+<section class="flex flex-col w-10/12 md:w-6/12 lg:w-4/12 my-3 mx-auto px-7">
+  <h1 class="dark:text-white text-gray-900 font-sans text-2xl ">{{ term.name }}</h1>
+
+
+    {% for page in term.pages %}
+        {{ post_macros::page_in_list(page=page) }}
+    {% endfor %}
+</section>
+{% endblock content %}

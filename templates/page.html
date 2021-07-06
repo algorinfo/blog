@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+{% import "post_macros.html" as post_macros %}
+
+{% block meta %}
+ {{ super() }}
+    <meta name="author" content="{{ page.extra.author }}">
+    <meta property="og:title" content="{{ page.title }}"/>
+    <meta property="og:image" content="{{ get_url(path="logo_og.jpg") | safe }}"/>
+    <meta property="og:description" content='{{ page.extra.description }}'/>
+    <meta property="og:url" content="{{ page.permalink | safe }}"/>
+    <meta property="og:image:width" content='1500' />
+    <meta property="og:image:height" content='1500' />
+    <meta name="keywords" content="{{ config.extra.keywords }}">
+{% endblock meta %}
+
+{% block content %}
+<article itemscope itemtype="http://schema.org/BlogPosting"
+         class="flex flex-col w-11/12 md:8/12 lg:w-7/12 my-7 mx-auto px-7"
+>
+
+
+  <header>
+    <h1 itemprop="headline"
+        class="text-4xl lg:text-center sm:text-6xl lg:text-7xl 
+                  leading-none font-serif font-extrabold 
+                  tracking-tight 
+                  text-{{ page.extra.color }} 
+                  dark:text-{{ page.extra.darkColor }}
+                  mt-10 mb-8 sm:mt-14 sm:mb-10">
+      {{ page.title }}
+    </h1>
+    <span class="muted">{{ post_macros::meta(page=page) }}</span>
+    </header>
+    <div itemprop="articleBody"
+         class="m-5 font-serif text-xl
+                       tracking-wide leading-relaxed 
+                       text-gray-900 dark:text-indigo-300">
+           {{ page.content | safe }}
+
+    </div>
+
+    {% block page_footer %}
+        <footer>
+            <hr>
+            <p>
+                {% if config.extra.author %}
+                    Published by {{ page.extra.author }}
+                {% endif %}
+                {% if page.taxonomies.categories %}
+                    {% set category = page.taxonomies.categories[0] %}
+                    in <a href="{{ get_taxonomy_url(kind="categories", name=category) | safe }}">{{ category }}</a>
+                {% endif %}
+                {% if page.taxonomies.tags %}
+                    and tagged
+                    {% for tag in page.taxonomies.tags %}
+                        <a href="{{ get_taxonomy_url(kind="tags", name=tag) | safe }}">{{ tag }}</a>
+                        {% if page.taxonomies.tags | length > 1 %}
+                            {% if loop.index != page.taxonomies.tags | length %}
+                                {% if loop.index == page.taxonomies.tags | length - 1 %}
+                                    and
+                                {% else %}
+                                    ,
+                                {% endif %}
+                            {% endif %}
+                        {% endif %}
+                    {% endfor %}
+                {% endif %}
+            </p>
+            {% block extra_footer %}
+            {% endblock extra_footer %}
+        </footer>
+    {% endblock page_footer %}
+</article>
+
+{% endblock content %}
+

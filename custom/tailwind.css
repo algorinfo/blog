@@ -1,0 +1,41 @@
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+/* CHECKBOX TOGGLE SWITCH */
+/* @apply rules for documentation, these do not work as inline style */
+.toggle-checkbox:checked {
+  right: 0;
+  border-color: #7C3AED;
+}
+.toggle-checkbox:checked + .toggle-label {
+  background-color: #7C3AED; 
+}
+
+h2 {
+    @apply font-mono text-indigo-600 dark:text-indigo-500 font-bold text-2xl my-5
+}
+
+h3 {
+    @apply font-mono dark:text-white text-gray-900 text-lg lg:text-xl
+}
+
+a {
+    @apply font-mono dark:text-yellow-600  text-yellow-400 hover:text-gray-500 dark:hover:text-gray-500
+}
+
+img {
+    @apply rounded-md mb-5
+}
+
+p {
+ @apply font-serif text-2xl tracking-wide leading-relaxed text-gray-900 dark:text-gray-300
+}
+
+ul {
+ @apply list-disc list-inside font-serif text-2xl tracking-wide leading-relaxed text-gray-900 dark:text-gray-300 mx-3
+}
+
+ol {
+ @apply list-disc list-inside font-serif text-2xl tracking-wide leading-relaxed text-gray-900 dark:text-gray-300 
+}

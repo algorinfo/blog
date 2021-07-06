@@ -1,0 +1,26 @@
+base_url = "https://blog.algorinfo.com"
+compile_sass = true
+title = "Bitácora"
+description = "Un blog"
+generate_feed = true
+
+taxonomies = [
+    {name = "categories", feed = true},
+    {name = "tags", feed = true},
+]
+
+[markdown]
+highlight_code = true
+highlight_theme = "dracula"
+render_emoji = true
+
+[extra]
+author = "Algorinfo"
+og_title = "algorinfo - blog"
+after_dark_menu = [
+    {url = "$BASE_URL", name = "blog"},
+    {url = "$BASE_URL/categories", name = "categorias"},
+    {url = "$BASE_URL/tags", name = "tags"},
+]
+after_dark_title = "Bitácora"
+keywords = "data, nerd, insights, blog"

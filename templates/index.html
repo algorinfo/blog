@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% import "post_macros.html" as post_macros %}
+{% block meta %}
+ {{ super() }}
+    <meta name="author" content="{{ config.extra.author }}">
+    <meta property="og:title" content="{{ config.extra.og_title }}"/>
+    <meta property="og:image" content="{{ get_url(path="logo_og.jpg") | safe }}"/>
+    <meta property="og:description" content="{{ config.description }}"/>
+    <meta property="og:url" content="{{ config.base_url | safe }}"/>
+    <meta property="og:image:width" content='1500' />
+    <meta property="og:image:height" content='1500' />
+    <meta name="keywords" content="{{ config.extra.keywords }}">
+{% endblock meta %}
+
+    {% block content %}
+    <main  class="mb-auto py-10 max-w-full w-full mx-auto
+                  flex flex-wrap flex-col
+                  content-center items-center justify-center
+                  "
+    >
+    
+      {% if config.extra.after_dark_title %}
+      <header>
+        <h1 class="text-4xl lg:text-center sm:text-6xl lg:text-7xl leading-none font-serif font-extrabold tracking-tight text-transparent bg-clip-text bg-gradient-to-br from-gray-900 to-gray-600 dark:from-blue-500 dark:to-pink-600 mt-10 mb-8 sm:mt-14 sm:mb-10">{{ config.extra.after_dark_title }}</h1>
+      </header>
+      {% endif %}
+        <div class="container m-5 w-10/12 sm:w-8/12 md:w-6/12 lg:w-4/12">
+        {% for page in paginator.pages %}
+        {{ post_macros::page_in_list(page=page) }}
+        {% endfor %}
+        </div>
+
+      <nav>
+        <p>
+          {% if paginator.previous %}
+          <a href="{{ paginator.previous }}"
+             class="my-3 dark:text-yellow-300 text-yellow-600 
+                   transition duration-500 ease-in-out 
+                   hover:animate-bounce">&laquo; Previous</a> |
+          {% endif %}
+          <span class="dark:text-gray-500 font-sans text-xl text-gray-700">Page {{ paginator.current_index }} of {{ paginator.number_pagers }}</span>
+          {% if paginator.next %}
+          | <a href="{{ paginator.next }}"
+               class="my-3 dark:text-yellow-300 text-yellow-600 
+                   transition duration-500 ease-in-out 
+                   hover:animate-bounce"
+            >Next &raquo;</a>
+          {% endif %}
+        </p>
+      </nav>
+    </main>
+    {% endblock content %}

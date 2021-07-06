@@ -1,0 +1,86 @@
+{% macro meta(page) %}
+<div class="flex  mb-3 mt-2">
+  <div class="flex items-center mr-3">
+    <svg style="margin-bottom:-3px" class="dark:text-gray-400 text-gray-700" viewBox="0 0 32 32"
+         width="16" height="16" fill="none" stroke="currentcolor"
+         stroke-linecap="round" stroke-linejoin="round" stroke-width="6.25%">
+      <circle cx="16" cy="16" r="14"/>
+      <path d="M16 8 L16 16 20 20"/>
+    </svg>
+    <span class="mx-3 font-sans dark:text-gray-400 text-gray-700 text-sm">
+      {{ page.reading_time }} minute read </span>
+  </div>
+  <div class="flex items-center">
+    <svg style="margin-bottom: -3px" class="dark:text-gray-400 text-gray-700 " viewBox="0 0 32 32"
+         width="16" height="16" fill="none" stroke="currentcolor"
+         stroke-linecap="round" stroke-linejoin="round" stroke-width="6.25%">
+      <path d="M30 7 L25 2 5 22 3 29 10 27 Z M21 6 L26 11 Z M5 22 L10 27 Z"/>
+    </svg>
+    <span class="mx-3 font-sans dark:text-gray-400 text-gray-700 text-sm">
+      {% if page.date %}Published: {{ page.date | date(format="%F") }}{% endif %}
+    </span>
+  </div>
+</div>
+{% endmacro meta %}
+{% macro tags(page) %}
+<div class="flex  mb-3 mt-2">
+  <div class="flex items-center">
+    <span class="font-sans dark:text-gray-400 text-gray-700 text-sm">Category:
+      {% if page.taxonomies.categories %}
+      {% set category = page.taxonomies.categories[0] %}
+      <a href="{{ get_taxonomy_url(kind="categories", name=category) | safe }}"
+         class="text-{{ page.extra.color }} dark:text-{{ page.extra.darkColor}}
+               hover:text-gray-500 dark:hover:text-gray-500"
+
+      >{{ category }}</a>
+      {% endif %}
+
+    </span>
+
+  </div>
+  <div class="flex items-center">
+    <span class="mx-3 font-sans dark:text-gray-400 text-gray-700 text-sm">
+      Tags:
+      {% if page.taxonomies.tags %}
+      {% for tag in page.taxonomies.tags %}
+      <a href="{{ get_taxonomy_url(kind="tags", name=tag) | safe }}">{{ tag }}</a>
+      {% if page.taxonomies.tags | length > 1 %}
+      {% if loop.index != page.taxonomies.tags | length %}
+      {% if loop.index == page.taxonomies.tags | length - 1 %}
+      and
+      {% else %}
+      ,
+      {% endif %}
+      {% endif %}
+      {% endif %}
+      {% endfor %}
+      {% endif %}
+
+    </span>
+  </div>
+</div>
+{% endmacro tags %}
+
+{% macro page_in_list(page) %}
+<article itemscope itemtype="http://schema.org/CreativeWork"
+         class="container m-5"
+>
+  <header>
+    <h2 itemprop="text">
+      <a class="font-mono font-bold text-{{ page.extra.color}} dark:text-{{ page.extra.darkColor }} text-2xl text-bold hover:text-gray-500" href="{{ page.permalink | safe }}"> {{ page.title }}</a>
+    </h2>
+    <span class="muted">{{ self::meta(page=page) }}</span>
+    <span class="muted">{{ self::tags(page=page) }}</span>
+  </header>
+  {% if page.summary %}
+  <div itemprop="summary"
+       class="my-5
+                 font-serif text-lg
+                 tracking-wide leading-relaxed
+                 text-gray-900 dark:text-gray-300">
+    {{ page.summary | safe }}
+    <nav><a itemprop="url" href="{{ page.permalink | safe }}">Leer mas&nbsp;&raquo;</a></nav>
+  </div>
+  {% endif %}
+</article>
+{% endmacro page_in_list %}

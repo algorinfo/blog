@@ -1,0 +1,49 @@
+<div class="border-t-4 border-indigo-500">
+  <nav  itemscope itemtype="http://schema.org/SiteNavigationElement" class="font-serif flex flex-col text-center content-center sm:flex-row sm:text-left sm:justify-between py-2 px-6 bg-indigo-700 dark:bg-gray-900 shadow sm:items-baseline w-full border-3 border-red-600">
+    <div class="flex flex-col justify-center content-center mb-2 sm:mb-0 inner">
+      <div class="flex-shrink justify-center justify-self-center">
+        <a href="https://algorinfo.com" class="text-2xl align-text-middle no-underline text-white dark:text-white hover:text-gray-500 font-serif font-bold">
+          <span class="inline-block text-yellow-500">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 align-middle" viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd" d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.38z" clip-rule="evenodd" />
+            </svg></span> algorinfo</a>
+      </div>
+      <div>
+        <p class="text-xs font-mono font-semibold text-gray-200 dark:text-gray-500">Expand your knowledge</p>
+      </div>
+    </div>
+
+    <div class="flex sm:mb-0 self-center">
+      <a href="https://algorinfo.com/trends" class="font-mono font-semibold text-md no-underline text-white dark:text-white hover:text-gray-500 ml-2 px-1">Trends</a>
+      <a href="https://algorinfo.com/dolar" class="font-mono font-semibold text-md no-underline text-white dark:text-white hover:text-gray-500 hover:text-yellow-500 ml-2 px-1">Dolar</a>
+     
+
+      <div x-data="aiDarkMode()">
+        <!-- Toggle button (a input type with a label) -->
+        <div class="flex">
+          <div class="text-yellow-600 dark:text-gray-500">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+            </svg>
+          </div>
+          <div>
+            <div class="relative inline-block w-10 mr-2 ml-2 align-middle select-none transition duration-200 ease-in">
+              <input type="checkbox" x-on:click="toggle" name="toggle" id="toggle" class="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-4 appearance-none cursor-pointer" />
+              <label for="toggle" class="toggle-label block overflow-hidden h-6 rounded-full bg-gray-300 cursor-pointer"></label>
+            </div>
+          </div>
+          <div class="dark:text-blue-500 text-white">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+            </svg>
+          </div>
+
+        </div>
+        <!--label for="toggle" class="font-mono text-xs text-gray-700">Dark side</label-->
+      </div>
+
+      <!-- </div> -->
+
+    </div>
+  </nav>
+</div>
