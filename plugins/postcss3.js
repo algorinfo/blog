@@ -35,7 +35,7 @@ module.exports = (options = { plugins: [] }) => ({
           async (result) => {
             try {
               await writeFile(tmpFilePath, result.css);
-              console.log("Css compiled.");
+              console.log(`Css compiled in ${tmpFilePath}/result.css`);
             } catch(e){
               console.log("ERR: Writing file in esbuild-postcss: ", e);
             }

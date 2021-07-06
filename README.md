@@ -5,7 +5,7 @@ Blog made with [zola](https://www.getzola.org/)
 ## :hammer: Build
 
 ```
-zola builda
+zola build
 env NODE_ENV=production yarn watch
 ```
 

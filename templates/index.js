@@ -18,7 +18,6 @@ function aiCheckTheme(){
 
 window.aiDarkMode = function(){
   aiCheckTheme();
-  console.log("From alpinejs!!!");
   return {
     toggle(){
       if(html.classList.contains('dark')) {
